@@ -5,11 +5,10 @@
 }
 
 :root {
-    --primary-color: #4e5fff;
+    --primary-color: #333;
     --secondary-color: #ff6b81;
-    --bg-light: #f8f9fa;
     --bg-dark: #212529;
-    --text-dark: #212529;
+    --text-dark: #666;
     --text-light: #f8f9fa;
     --class-bg: #fff0f0;
     --break-bg: #f0fff0;
@@ -21,29 +20,21 @@
 }
 
 body {
-    font-family: 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: var(--bg-light);
     color: var(--text-dark);
-    line-height: 1.6;
-    transition: background-color 1s ease;
-}
-
-body.class-time {
-    background-color: var(--class-bg);
-}
-
-body.break-time {
-    background-color: var(--break-bg);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(./assets/bg.png);
 }
 
 .container {
     display: flex;
     flex-direction: row;
-    min-height: 100vh;
-    padding: 20px;
+    min-height: 80vh;
     gap: 20px;
     max-width: 1600px;
     margin: 0 auto;
+    align-items: stretch;
 }
 
 @media (max-width: 1024px) {
@@ -52,25 +43,17 @@ body.break-time {
     }
 }
 
-.live-room {
-    flex: 3;
+.live-room, .schedule {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-}
-
-.schedule {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    flex: 1 1 0;
+    height: 100%;
 }
 
 .card {
-    background-color: white;
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    box-shadow: var(--shadow);
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .card-header {
@@ -94,27 +77,32 @@ h2 {
 
 /* 视频容器样式 */
 .video-container {
+    flex: 1 1 0;
     width: 100%;
     background-color: #000;
-    height: calc(100vh - 180px);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
     overflow: hidden;
+    display: flex;
 }
 
-iframe {
+.video-container iframe {
     width: 100%;
     height: 100%;
     border: none;
+    display: block;
 }
 
 /* 当前状态样式 */
 .current-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: white;
     border-radius: var(--border-radius);
-    padding: 20px;
+    padding: 12px 10px;
     text-align: center;
     box-shadow: var(--shadow);
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 #current-time {
@@ -317,57 +305,9 @@ iframe {
         transform: scale(1.2);
     }
 }
-
-.study-room-footer {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 15px;
-    background-color: rgba(0, 0, 0, 0.4);
-    border-top: 1px solid #333;
-}
-
-.study-timer {
-    font-family: monospace;
-    font-size: 16px;
-    color: #88ccff;
-}
-
-.study-status {
-    color: #aaa;
-    font-size: 14px;
-    animation: blink 2s infinite;
-}
-
 @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.6; }
-}
-
-.placeholder-video {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #2d2d2d;
-    font-size: 18px;
-    line-height: 1.6;
-    text-align: center;
-    z-index: 10;
-    position: relative;
-}
-
-.live-link {
-    display: inline-block;
-    margin: 15px 0;
-    padding: 10px 20px;
-    background-color: #fb7299; /* B站粉色 */
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: bold;
-    transition: background-color 0.3s;
 }
 
 .live-link:hover {
@@ -468,8 +408,8 @@ iframe {
 
 /* 倒计时样式 */
 .countdown-container {
-    margin-top: 20px;
-    padding-top: 15px;
+    margin-top: 10px;
+    padding-top: 8px;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
@@ -477,10 +417,10 @@ iframe {
 }
 
 .countdown-label {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: var(--text-dark);
     opacity: 0.7;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
     font-weight: 500;
 }
 
@@ -493,14 +433,14 @@ iframe {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 2px;
 }
 
 .countdown-box {
     background: linear-gradient(135deg, var(--primary-color), #636dff);
-    border-radius: 10px;
-    padding: 10px 8px;
-    min-width: 60px;
+    border-radius: 8px;
+    padding: 6px 4px;
+    min-width: 36px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -519,29 +459,30 @@ iframe {
     height: 50%;
     background: rgba(255, 255, 255, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px 10px 0 0;
+    border-radius: 8px 8px 0 0;
 }
 
 .countdown-box span:first-child {
-    font-size: 1.6rem;
-    font-weight: 700;
+    font-size: 1.1rem;
+    font-weight: 600;
     line-height: 1.2;
     font-variant-numeric: tabular-nums;
     z-index: 1;
 }
 
 .countdown-unit {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 500;
     opacity: 0.9;
     z-index: 1;
+    margin-top: 0.1rem;
 }
 
 .countdown-separator {
-    font-size: 1.6rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    color: var(--primary-color);
-    margin-top: -5px;
+    color: #bbb;
+    margin: 0 2px;
 }
 
 /* 倒计时即将结束动画 */

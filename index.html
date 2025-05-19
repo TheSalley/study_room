@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>自习室</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- 解决跨域问题 -->
     <meta name="referrer" content="no-referrer">
 </head>
+
 <body>
     <div class="container">
         <div class="live-room">
@@ -18,14 +19,10 @@
                 </div>
                 <div class="card-body">
                     <div class="video-container">
-                        <!-- B站直播嵌入（使用正确的直播间ID 12618111） -->
-                        <iframe src="//www.bilibili.com/blackboard/live/live-activity-player.html?cid=12618111&quality=0&danmaku=0&autoplay=1" 
-                                width="100%" 
-                                height="100%" 
-                                frameborder="0" 
-                                scrolling="no" 
-                                allow="autoplay; encrypted-media" 
-                                allowfullscreen="true">
+                        <iframe
+                            src="//www.bilibili.com/blackboard/live/live-activity-player.html?cid=12618111&quality=0&danmaku=0&autoplay=1"
+                            width="100%" height="100%" frameborder="0" scrolling="no" allow="autoplay; encrypted-media"
+                            allowfullscreen="true">
                         </iframe>
                     </div>
                 </div>
@@ -35,8 +32,6 @@
             <div class="current-status">
                 <div id="current-time">--:--</div>
                 <div id="status-indicator" class="status-free">休息时间</div>
-                
-                <!-- 倒计时模块 -->
                 <div class="countdown-container">
                     <div class="countdown-label">距离<span id="countdown-target">下一节课</span></div>
                     <div class="countdown-timer" id="countdown-timer">
@@ -62,86 +57,13 @@
                     <h2>时间表</h2>
                 </div>
                 <div class="card-body">
-                    <div id="schedule-list" class="schedule-list">
-                        <!-- 时间表将通过JavaScript动态加载 -->
-                    </div>
+                    <div id="schedule-list" class="schedule-list"></div>
                 </div>
             </div>
         </div>
     </div>
     <audio id="bell" src="bell.mp3"></audio>
     <script src="script.js"></script>
-    <script>
-        // 自习室模拟环境
-        document.addEventListener('DOMContentLoaded', function() {
-            // 更新在线人数
-            function updateOnlineUsers() {
-                const usersCount = document.getElementById('online-users');
-                const baseCount = 42;
-                // 随机波动
-                const randomChange = Math.floor(Math.random() * 5) - 2;
-                const newCount = Math.max(baseCount + randomChange, 1);
-                usersCount.textContent = newCount;
-                
-                setTimeout(updateOnlineUsers, 30000); // 每30秒更新一次
-            }
-            
-            // 更新学习计时器
-            function updateStudyTimer() {
-                const timerElement = document.getElementById('study-timer');
-                let seconds = 0;
-                
-                function incrementTimer() {
-                    seconds++;
-                    const hours = Math.floor(seconds / 3600);
-                    const minutes = Math.floor((seconds % 3600) / 60);
-                    const secs = seconds % 60;
-                    
-                    timerElement.textContent = 
-                        `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-                    
-                    setTimeout(incrementTimer, 1000);
-                }
-                
-                incrementTimer();
-            }
-            
-            // 显示随机学习提示
-            function showRandomMessages() {
-                const messageBox = document.getElementById('message-box');
-                const messages = [
-                    "专注学习，成就梦想",
-                    "今日事，今日毕",
-                    "坚持就是胜利",
-                    "学习使我快乐",
-                    "不积跬步，无以至千里",
-                    "学海无涯，回头是岸",
-                    "书山有路勤为径",
-                    "与其临渊羡鱼，不如退而结网",
-                    "聚精会神，心无旁骛",
-                    "静下心来，方能致远"
-                ];
-                
-                function showMessage() {
-                    const randomIndex = Math.floor(Math.random() * messages.length);
-                    messageBox.textContent = messages[randomIndex];
-                    messageBox.style.opacity = 1;
-                    
-                    setTimeout(() => {
-                        messageBox.style.opacity = 0;
-                    }, 5000);
-                    
-                    setTimeout(showMessage, 60000); // 每60秒显示一次
-                }
-                
-                setTimeout(showMessage, 10000); // 10秒后开始显示
-            }
-            
-            // 初始化
-            updateOnlineUsers();
-            updateStudyTimer();
-            showRandomMessages();
-        });
-    </script>
 </body>
-</html> 
+
+</html>
